@@ -1,10 +1,11 @@
 <?php 
 namespace HtaccessManager;
 class Htaccess {
-    private $path = $_SERVER['DOCUMENT_ROOT'] . '/.htaccess';
+    private $path = "";
     public function __construct()
     {
-        parent::__construct();
+        //parent::__construct();
+        $this->path = $_SERVER['DOCUMENT_ROOT'] . '/.htaccess';
     }
     function getAllowed()
     {
