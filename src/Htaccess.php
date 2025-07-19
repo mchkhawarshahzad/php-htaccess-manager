@@ -1,4 +1,5 @@
 <?php 
+namespace HtaccessManager;
 class Htaccess {
     private $path = $_SERVER['DOCUMENT_ROOT'] . '/.htaccess';
     public function __construct()
