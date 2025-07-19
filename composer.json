@@ -1,6 +1,7 @@
 {
   "name": "mchkhawarshahzad/php-htaccess-manager",
-  "description": "PHP class to manage .htaccess files - parse, update, merge rules.",
+  "description": "PHP class to manage .htaccess files - parse, update, and merge rules easily.",
+  "keywords": ["htaccess", "parser", "php", "apache", "manager", "rewrite"],
   "type": "library",
   "license": "MIT",
   "autoload": {
@@ -10,5 +11,17 @@
   },
   "require": {
     "php": ">=7.4"
+  },
+  "authors": [
+    {
+      "name": "Khawar Shahzad",
+      "email": "khawar@whasols.com",
+      "homepage": "https://github.com/mchkhawarshahzad",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/mchkhawarshahzad/php-htaccess-manager/issues",
+    "source": "https://github.com/mchkhawarshahzad/php-htaccess-manager"
   }
 }
