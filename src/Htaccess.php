@@ -68,14 +68,15 @@ class Htaccess {
         $lines = preg_split('/\R/', $content);
         $stack = [];
         $root = ['type' => 'root', 'rules' => '', 'data' => []];
-        $current = &$root['data'];
+
+        $currentPath = [&$root];  // array of references to path stack
 
         foreach ($lines as $line) {
             $line = trim($line);
             if ($line === '' || str_starts_with($line, '#')) continue;
 
-            // Match opening tags like <IfModule mod_rewrite.c>
-            if (preg_match('/^<(\w+)(.*?)>$/i', $line, $openMatch)) {
+            // Opening tag
+            if (preg_match('/^<(\w+)([^>]*)>$/i', $line, $openMatch)) {
                 $tag = strtolower($openMatch[1]);
                 $rules = trim($openMatch[2]);
 
@@ -84,23 +85,22 @@ class Htaccess {
                     'rules' => $rules,
                     'data' => []
                 ];
-                $current[] = &$newBlock; // append new block to current
-                $stack[] = [&$current, &$newBlock]; // push current context
 
-                $current = &$newBlock['data']; // descend into nested level
+                $parent = &$currentPath[count($currentPath) - 1];
+                $parent['data'][] = $newBlock;
+
+                // Append a REFERENCE to newly added block
+                $index = count($parent['data']) - 1;
+                $currentPath[] = &$parent['data'][$index];
             }
-
-            // Match closing tags like </IfModule>
+            // Closing tag
             elseif (preg_match('/^<\/(\w+)>$/i', $line)) {
-                if (!empty($stack)) {
-                    [$parent, $block] = array_pop($stack);
-                    $current = &$parent; // go back up
-                }
+                array_pop($currentPath);
             }
-
             // Regular line
             else {
-                $current[] = $line;
+                $current = &$currentPath[count($currentPath) - 1];
+                $current['data'][] = $line;
             }
         }
         return $root;
