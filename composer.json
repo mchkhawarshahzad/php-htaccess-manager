@@ -1,0 +1,14 @@
+{
+  "name": "mchkhawarshahzad/php-htaccess-manager",
+  "description": "PHP class to manage .htaccess files - parse, update, merge rules.",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "HtaccessManager\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.4"
+  }
+}
