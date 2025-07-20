@@ -9,7 +9,8 @@ A PHP class to read, parse, merge, and update `.htaccess` files in a structured 
 - Rebuild `.htaccess` content in proper structure  
 - Simple `get()` and `put()` file methods  
 - Auto-checks for disabled PHP functions  
-- Update `.htaccess` with new rules without affecting existing ones  
+- Update `.htaccess` with new rules without affecting existing ones
+- Apache rules validation and conversion on the fly based on apache version, if V2.2 then (2.4+ to 2.2) and if 2.4+ then (2.2 to 2.4+)
 
 ## 📂 Usage Examples (in `examples` folder)
 
